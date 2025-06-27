@@ -1,23 +1,352 @@
+/* Global Styles */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    margin-bottom: 60px;
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', sans-serif;
 }
 
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Titles */
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-top: 30px;
+}
+
+h1.display-4 {
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Buttons */
+button,
+#form-button,
+.text-right a,
+.post-actions .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#form-button,
+button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+}
+
+#form-button:hover,
+button:hover {
+    background-color: #218838;
+}
+
+.text-right a {
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.text-right a:hover {
+    background-color: #0056b3;
+}
+
+.post-actions .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.post-actions .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.post-actions .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.post-actions .btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+/* Form Styling */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="hidden"],
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Post Cards */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.post, .post-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.post:hover, .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.post h2, .post-card h2 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+.post h2 a, .post-card h2 a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.post h2 a:hover, .post-card h2 a:hover {
+    color: #0056b3;
+}
+
+.post h5, .post-card h5 {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.post p, .post-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Actions */
+.post-actions {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin: 10px 0;
+}
+
+.post-actions ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Meta and Info */
+.text-muted {
+    color: #888 !important;
+}
+
+/* Error Messages */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* No Posts Message */
+.no-posts {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+/* Focus Styling */
+.btn:focus, 
+.btn:active:focus, 
+.btn-link.nav-link:focus, 
+.form-control:focus, 
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    h1.display-4 {
+        font-size: 28px;
+    }
+
+    .post, .post-card {
+        padding: 20px;
+    }
+
+    .text-right a {
+        margin: 10px;
+        padding: 8px 12px;
+    }
+
+    .post-actions ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ============================= */
+/* Login & Signup Form Styling */
+/* ============================= */
+
+.auth-container {
+    background-color: #fff;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.auth-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.auth-container button {
+    padding: 12px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-container button:hover {
+    background-color: #0056b3;
+}
+
+.auth-container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #333;
+}
+
+.auth-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .auth-container {
+        padding: 25px;
+        margin: 40px 15px;
+    }
+
+    .auth-container h2 {
+        font-size: 24px;
+    }
+}

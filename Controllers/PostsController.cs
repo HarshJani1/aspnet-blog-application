@@ -185,28 +185,32 @@ public class PostsController : Controller
     }
 
     // ✅ Delete Post (only if belongs to user)
-    [HttpPost]
-    public JsonResult Delete(int id)
+   [HttpPost]
+public IActionResult Delete(int id)
+{
+    var userId = HttpContext.User.FindFirst("UserId")?.Value;
+    if (string.IsNullOrEmpty(userId))
     {
-        var userId = HttpContext.User.FindFirst("UserId")?.Value;
-        if (string.IsNullOrEmpty(userId))
-            return Json(new { success = false });
-
-        using (var connection = new MySqlConnection(connectionString))
-        {
-            using (var command = connection.CreateCommand())
-            {
-                connection.Open();
-                command.CommandText = "DELETE FROM post WHERE Id = @id AND UserId = @userId";
-                command.Parameters.AddWithValue("@id", id);
-                command.Parameters.AddWithValue("@userId", userId);
-
-                command.ExecuteNonQuery();
-            }
-        }
-
-        return Json(new { success = true });
+        // User not logged in — redirect to login
+        return RedirectToAction("Login", "Auth");
     }
+
+    using (var connection = new MySqlConnection(connectionString))
+    {
+        using (var command = connection.CreateCommand())
+        {
+            connection.Open();
+            command.CommandText = "DELETE FROM post WHERE Id = @id AND UserId = @userId";
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@userId", userId);
+
+            command.ExecuteNonQuery();
+        }
+    }
+
+    return Json(new { success = true });
+}
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
