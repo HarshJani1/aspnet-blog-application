@@ -1,9 +1,28 @@
-﻿@{
+﻿@model PostViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-@model PostViewModel
 
-<div class="text-center">
-    <h1 class="display-4">My Blog</h1>
-    <p>This is my website to showcase all of my cool ideas and projects, yo.</p>
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">For You Feed 📰</h1>
+
+    @if (Model.PostList != null && Model.PostList.Count > 0)
+    {
+        foreach (var post in Model.PostList)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4>@post.Title</h4>
+                    <small class="text-muted">By @post.UserName on @post.UpdatedAt.ToString("dd MMM yyyy")</small>
+                </div>
+                <div class="card-body">
+                    <p>@post.Body</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No posts available yet.</p>
+    }
 </div>
